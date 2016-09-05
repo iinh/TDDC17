@@ -104,7 +104,7 @@ class MyAgentProgram implements AgentProgram {
 	//public int iterationCounter = 10;
 	private boolean foundStartingPoint = false;
 	private boolean movedDown = false;
-	private boolean turningWestNext = true;
+	private boolean turningRightNext = true;
 	private boolean turning = false;
 	private boolean doneCleaning = false;
 	
@@ -265,16 +265,16 @@ class MyAgentProgram implements AgentProgram {
 	    }
 	    
 	    // Complete the 180 degrees turn by turning the same direction as before.
-	    else if(state.agent_direction != MyAgentState.WEST && turning && turningWestNext){
-	    	turningWestNext = false;
+	    else if(state.agent_direction != MyAgentState.WEST && turning && turningRightNext){
+	    	turningRightNext = false;
 	    	turning = false;
 	    	state.agent_direction = ((state.agent_direction+1) % 4);
 		    state.agent_last_action = state.ACTION_TURN_RIGHT;
 			return LIUVacuumEnvironment.ACTION_TURN_RIGHT;	
 	    }
 	    
-	    else if(state.agent_direction != MyAgentState.EAST && turning && !turningWestNext){
-	    	turningWestNext = true;
+	    else if(state.agent_direction != MyAgentState.EAST && turning && !turningRightNext){
+	    	turningRightNext = true;
 	    	turning = false;
 	    	state.agent_direction = ((state.agent_direction-1) % 4);
     		if (state.agent_direction<0) 
