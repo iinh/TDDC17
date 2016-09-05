@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="aima.core.agent.impl.NoOpAction"/>
+<fullyQualifiedTypeName name="aima.core.environment.liuvacuum.LIUVacuumEnvironment"/>
+<fullyQualifiedTypeName name="tddc17.MyAgentState"/>
+</qualifiedTypeNameHistroy>
