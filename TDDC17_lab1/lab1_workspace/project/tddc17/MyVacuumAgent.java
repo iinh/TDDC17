@@ -9,6 +9,7 @@ import aima.core.agent.impl.*;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -26,14 +27,14 @@ class MyAgentState
 		ArrayList<Node> neighbors;
 		Node previous;
 		boolean visited = false;
-		
+
 		Node(int x, int y, Node previous){
 			this.x = x;
 			this.y = y;
 			this.previous = previous;
 		}
 	}
-	
+
 	public int[][] world = new int[30][30];
 	public int initialized = 0;
 	final int UNKNOWN 	= 0;
@@ -120,11 +121,17 @@ class MyAgentProgram implements AgentProgram {
 
 	private int initnialRandomActions = 10;
 	private Random random_generator = new Random();
+	private int xCount = 2;
+	private int yCount = 1;
+	private boolean goingEast = true;
+	private boolean doneCleaning = false;
+	private boolean startedHomeJourney = false;
 
 
 
 	// Here you can define your variables!
 	//public int iterationCounter = 10;
+	LinkedList<Node> path = new LinkedList<Node>();
 
 
 	public MyAgentState state = new MyAgentState();
@@ -159,20 +166,74 @@ class MyAgentProgram implements AgentProgram {
 			{
 				worldNodes[i][j]= new Node(i,j,null);
 			}
-			
+
 		}
-		
+
 		return worldNodes;
 	}
+	
+	public boolean outOfBounds(int x, int y){
+		return !(1 <= x &&  x <= 15 && 1 <= y &&  y <= 15); 
+	}
+	
+	public boolean correctDirection(int goalX, int goalY){
+		if(state.agent_x_position > goalX && state.agent_direction != state.WEST){
+			return false;
+		}
+		else if(state.agent_x_position < goalX && state.agent_direction != state.EAST){
+			return false;
+
+		}
+		else if(state.agent_y_position > goalY && state.agent_direction != state.NORTH){
+			return false;
+
+		}
+		else if(state.agent_y_position < goalY && state.agent_direction != state.SOUTH){
+			return false;
+		}
+		else{
+			return true;
+		}
+	}
+	
+	public void updateGoal(){
+		if(goingEast){
+			xCount++;
+			if(xCount>15){
+				goingEast = false;
+				xCount = 15;
+				yCount++;
+				if(yCount>15){
+					doneCleaning = true;
+					yCount = 1;
+				}
+			}	
+		}
+		else{
+			xCount--;
+			if(xCount<1){
+				xCount = 1;
+				goingEast = true;
+				yCount++;
+				if(yCount>15){
+					doneCleaning = true;
+					yCount = 1;
+				}
+			}
+		}
+		
+	}
+	
 	public LinkedList<Node> updatePath(Node goalNode, Node rootNode){
 		Queue<Node> q = new LinkedList<Node>();
 		Node[][] worldNodes = initWorldMap();
 		LinkedList<Node> path = new LinkedList<Node>();
 		q.add(rootNode);
 		rootNode.previous = null;
+		System.out.println("goalx: " + goalNode.x + " goaly: " + goalNode.y);
 
 		while(!q.isEmpty()){
-			Node currentNode = q.remove();
+			Node currentNode = q.peek();
 			if(currentNode.x == goalNode.x && currentNode.y == goalNode.y){
 				while(currentNode.previous != null){
 					path.add(currentNode);
@@ -180,93 +241,29 @@ class MyAgentProgram implements AgentProgram {
 				}
 				return path;
 			}
-			
-			else{
-				currentNode.visited = true;
-				if(state.world[currentNode.x][currentNode.y-1]!= state.WALL || !worldNodes[currentNode.x][currentNode.y-1].visited){
-					q.add(new Node(currentNode.x, currentNode.y-1, currentNode));
-				}
-				
-				if(state.world[currentNode.x+1][currentNode.y]!= state.WALL || !worldNodes[currentNode.x+1][currentNode.y].visited){
-					q.add(new Node(currentNode.x+1, currentNode.y, currentNode));
-				}
-				
-				if(state.world[currentNode.x][currentNode.y+1]!= state.WALL || !worldNodes[currentNode.x][currentNode.y+1].visited){
-					q.add(new Node(currentNode.x, currentNode.y+1, currentNode));
-				}
-				
-				if(state.world[currentNode.x-1][currentNode.y]!= state.WALL || !worldNodes[currentNode.x-1][currentNode.y].visited){
-					q.add(new Node(currentNode.x-1, currentNode.y, currentNode));
-				}
+
+
+			q.remove();
+			currentNode.visited = true;
+			worldNodes[currentNode.x][currentNode.y].visited = true;
+			if(!outOfBounds(currentNode.x , currentNode.y-1) && (state.world[currentNode.x][currentNode.y-1]!= state.WALL && !worldNodes[currentNode.x][currentNode.y-1].visited)){
+				q.add(new Node(currentNode.x, currentNode.y-1, currentNode));
 			}
+
+			if(!outOfBounds(currentNode.x+1 , currentNode.y) && (state.world[currentNode.x+1][currentNode.y]!= state.WALL && !worldNodes[currentNode.x+1][currentNode.y].visited)){
+				q.add(new Node(currentNode.x+1, currentNode.y, currentNode));
+			}
+
+			if(!outOfBounds(currentNode.x , currentNode.y+1) && (state.world[currentNode.x][currentNode.y+1]!= state.WALL && !worldNodes[currentNode.x][currentNode.y+1].visited)){
+				q.add(new Node(currentNode.x, currentNode.y+1, currentNode));
+			}
+
+			if(!outOfBounds(currentNode.x-1 , currentNode.y) && (state.world[currentNode.x-1][currentNode.y]!= state.WALL && !worldNodes[currentNode.x-1][currentNode.y].visited)){
+				q.add(new Node(currentNode.x-1, currentNode.y, currentNode));
+			}
+
 		}
 		return path;
-
-		//	    /* Breadth First Search */
-		//	    vector<Node *> breadthFirstSearch(BasicGraph& graph, Vertex* start, Vertex* end) {
-		//	        graph.resetData();
-		//	        queue<Node*> q;
-		//	        q.push(start);
-		//	        vector<Vertex*> path;
-		//	        while (!q.empty()){
-		//	            Node* t = q.front();
-		//	            t->visited = true;
-		//	            t->setColor(GREEN);
-		//	            if (t == end){ //Found a path
-		//	                while(t != NULL){
-		//	                    path.push_back(t);
-		//	                    t = t->previous;
-		//	                }
-		//	                return path;
-		//	            }
-		//	            q.pop();
-		//	            for (Node *node : graph.getNeighbors(t)){
-		//	                if(!node->visited){
-		//	                    node->previous = t;
-		//	                    q.push(node);
-		//	                    node->setColor(YELLOW);
-		//	                }
-		//	            }
-		//	        }
-		//	        return path;
-		//	    }
-
-
-		//	    public List search(Node startNode, Node goalNode) {
-		//	    	  // list of visited nodes
-		//	    	  LinkedList closedList = new LinkedList();
-		//	    	  
-		//	    	  // list of nodes to visit (sorted)
-		//	    	  LinkedList openList = new LinkedList();
-		//	    	  openList.add(startNode);
-		//	    	  startNode.pathParent = null;
-		//	    	  
-		//	    	  while (!openList.isEmpty()) {
-		//	    	    Node node = (Node)openList.removeFirst();
-		//	    	    if (node == goalNode) {
-		//	    	      // path found!
-		//	    	      return constructPath(goalNode);
-		//	    	    }
-		//	    	    else {
-		//	    	      closedList.add(node);
-		//	    	      
-		//	    	      // add neighbors to the open list
-		//	    	      Iterator i = node.neighbors.iterator();
-		//	    	      while (i.hasNext()) {
-		//	    	        Node neighborNode = (Node)i.next();
-		//	    	        if (!closedList.contains(neighborNode) &&
-		//	    	          !openList.contains(neighborNode)) 
-		//	    	        {
-		//	    	          neighborNode.pathParent = node;
-		//	    	          openList.add(neighborNode);
-		//	    	        }
-		//	    	      }
-		//	    	    }
-		//	    	  }
-		//	    	  
-		//	    	  // no path found
-		//	    	  return null;
-		//	    	}
 
 	}
 
@@ -300,8 +297,70 @@ class MyAgentProgram implements AgentProgram {
 
 		state.updatePosition(p);
 
+		if(!home && !startedHomeJourney){
+			path = updatePath(new Node(1, 1, null), new Node(state.agent_x_position, state.agent_y_position, null));
+			startedHomeJourney = true;
+		}
+		
+		else if(home && doneCleaning){
+			return NoOpAction.NO_OP;
+		}
 
-		return null;
+
+		else if(bump){
+			System.out.println("---------BUMP--------------");
+			switch (state.agent_direction) {
+			case MyAgentState.NORTH:
+				state.updateWorld(state.agent_x_position,state.agent_y_position-1,state.WALL);
+				
+				break;
+			case MyAgentState.EAST:
+				state.updateWorld(state.agent_x_position+1,state.agent_y_position,state.WALL);
+				break;
+			case MyAgentState.SOUTH:
+				state.updateWorld(state.agent_x_position,state.agent_y_position+1,state.WALL);
+				break;
+			case MyAgentState.WEST:
+				state.updateWorld(state.agent_x_position-1,state.agent_y_position,state.WALL);
+				break;
+			}
+			state.printWorldDebug();
+			path = updatePath(new Node(xCount, yCount, null), new Node(state.agent_x_position, state.agent_y_position, null));
+			System.out.println("START PRINTING PATH");
+			for (int i = 0; i < path.size(); i++) {
+				System.out.println("path: " + path.get(i).x + ", "+path.get(i).y);
+			}			
+			System.out.println("END PRINTING PATH");
+			System.out.println("New GoalBump: " + xCount +", " + yCount);
+
+
+		}
+		else if(path.isEmpty()){
+			path = updatePath(new Node(xCount, yCount, null), new Node(state.agent_x_position, state.agent_y_position, null));
+			updateGoal();
+			System.out.println("New Goal: " + xCount +", " + yCount);
+		}
+		System.out.println("Action Done: " + path.peekLast().x + ", "+ path.peekLast().y);
+		
+
+		if(!correctDirection(path.peekLast().x, path.peekLast().y)){
+			state.agent_direction = ((state.agent_direction-1) % 4);
+			if (state.agent_direction<0) 
+				state.agent_direction +=4;
+			state.agent_last_action=state.ACTION_TURN_LEFT;
+			return LIUVacuumEnvironment.ACTION_TURN_LEFT;
+		}
+
+		
+		
+		else{
+			if(!bump) {
+				path.removeLast();
+			}
+			state.agent_last_action=state.ACTION_MOVE_FORWARD;
+			return LIUVacuumEnvironment.ACTION_MOVE_FORWARD;
+		}
+
 	}
 }
 
