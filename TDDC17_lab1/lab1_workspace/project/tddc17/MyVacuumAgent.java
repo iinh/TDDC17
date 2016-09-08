@@ -29,6 +29,7 @@ class MyAgentState
 		boolean visited = false;
 
 		Node(int x, int y, Node previous){
+			this.visited = false;
 			this.x = x;
 			this.y = y;
 			this.previous = previous;
@@ -106,7 +107,7 @@ class MyAgentState
 				if (world[j][i]==WALL)
 					System.out.print(" # ");
 				if (world[j][i]==CLEAR)
-					System.out.print(" . ");
+					System.out.print(" _ ");
 				if (world[j][i]==DIRT)
 					System.out.print(" D ");
 				if (world[j][i]==HOME)
@@ -294,8 +295,16 @@ class MyAgentProgram implements AgentProgram {
 		Boolean dirt = (Boolean)p.getAttribute("dirt");
 		Boolean home = (Boolean)p.getAttribute("home");
 		System.out.println("percept: " + p);
-
+		state.printWorldDebug();
 		state.updatePosition(p);
+		
+		if(doneCleaning){
+			System.out.println("START PRINTING PATH");
+			for (int i = 0; i < path.size(); i++) {
+				System.out.println("path: " + path.get(i).x + ", "+path.get(i).y);
+			}			
+			System.out.println("END PRINTING PATH");
+		}
 
 		if(!home && !startedHomeJourney){
 			path = updatePath(new Node(1, 1, null), new Node(state.agent_x_position, state.agent_y_position, null));
@@ -306,7 +315,12 @@ class MyAgentProgram implements AgentProgram {
 			return NoOpAction.NO_OP;
 		}
 
-
+		else if (dirt){
+			state.agent_last_action=state.ACTION_SUCK;
+			state.updateWorld(state.agent_x_position,state.agent_y_position,state.CLEAR);
+			return LIUVacuumEnvironment.ACTION_SUCK;
+		}
+		
 		else if(bump){
 			System.out.println("---------BUMP--------------");
 			switch (state.agent_direction) {
@@ -324,25 +338,26 @@ class MyAgentProgram implements AgentProgram {
 				state.updateWorld(state.agent_x_position-1,state.agent_y_position,state.WALL);
 				break;
 			}
-			state.printWorldDebug();
 			path = updatePath(new Node(xCount, yCount, null), new Node(state.agent_x_position, state.agent_y_position, null));
-			System.out.println("START PRINTING PATH");
-			for (int i = 0; i < path.size(); i++) {
-				System.out.println("path: " + path.get(i).x + ", "+path.get(i).y);
-			}			
-			System.out.println("END PRINTING PATH");
-			System.out.println("New GoalBump: " + xCount +", " + yCount);
+			while(path.isEmpty() || state.world[xCount][yCount] == state.WALL){
+				updateGoal();
+				path = updatePath(new Node(xCount, yCount, null), new Node(state.agent_x_position, state.agent_y_position, null));
+			}
 
 
 		}
 		else if(path.isEmpty()){
-			path = updatePath(new Node(xCount, yCount, null), new Node(state.agent_x_position, state.agent_y_position, null));
-			updateGoal();
+			if(xCount == state.agent_x_position && yCount == state.agent_y_position){
+				updateGoal();
+			}
+			while(path.isEmpty()){
+				path = updatePath(new Node(xCount, yCount, null), new Node(state.agent_x_position, state.agent_y_position, null));
+				updateGoal();
+			}
 			System.out.println("New Goal: " + xCount +", " + yCount);
+	
 		}
-		System.out.println("Action Done: " + path.peekLast().x + ", "+ path.peekLast().y);
 		
-
 		if(!correctDirection(path.peekLast().x, path.peekLast().y)){
 			state.agent_direction = ((state.agent_direction-1) % 4);
 			if (state.agent_direction<0) 
@@ -351,12 +366,13 @@ class MyAgentProgram implements AgentProgram {
 			return LIUVacuumEnvironment.ACTION_TURN_LEFT;
 		}
 
-		
-		
+
 		else{
 			if(!bump) {
 				path.removeLast();
+				state.updateWorld(state.agent_x_position,state.agent_y_position,state.CLEAR);				
 			}
+			
 			state.agent_last_action=state.ACTION_MOVE_FORWARD;
 			return LIUVacuumEnvironment.ACTION_MOVE_FORWARD;
 		}
