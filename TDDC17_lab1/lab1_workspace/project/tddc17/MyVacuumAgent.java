@@ -21,6 +21,8 @@ import tddc17.MyAgentState.Node;
 
 class MyAgentState
 {
+	
+	// Node class
 	public static class Node {
 		int x;
 		int y;
@@ -122,8 +124,8 @@ class MyAgentProgram implements AgentProgram {
 
 	private int initnialRandomActions = 10;
 	private Random random_generator = new Random();
-	private int xCount = 2;
-	private int yCount = 1;
+	private int xCount = 2; // next coordinates to explore
+	private int yCount = 1; // --
 	private boolean goingEast = true;
 	private boolean doneCleaning = false;
 	private boolean startedHomeJourney = false;
@@ -159,6 +161,7 @@ class MyAgentProgram implements AgentProgram {
 		return LIUVacuumEnvironment.ACTION_MOVE_FORWARD;
 	}
 
+	// Fill worldNodes with new Nodes at all coordinated of the map that are unvisited.
 	public Node[][]  initWorldMap(){
 		Node[][] worldNodes = new Node[30][30];
 		for (int i=0; i < state.world.length; i++)
@@ -172,11 +175,13 @@ class MyAgentProgram implements AgentProgram {
 
 		return worldNodes;
 	}
+
 	
 	public boolean outOfBounds(int x, int y){
 		return !(1 <= x &&  x <= 15 && 1 <= y &&  y <= 15); 
 	}
 	
+	// Returns true if we're facing the correct direction, depening on next goal position.
 	public boolean correctDirection(int goalX, int goalY){
 		if(state.agent_x_position > goalX && state.agent_direction != state.WEST){
 			return false;
@@ -197,6 +202,7 @@ class MyAgentProgram implements AgentProgram {
 		}
 	}
 	
+	// Update our next goal coordinates.
 	public void updateGoal(){
 		if(goingEast){
 			xCount++;
@@ -225,13 +231,13 @@ class MyAgentProgram implements AgentProgram {
 		
 	}
 	
+	// Main search algorithm using Breadth First Search. Returns path to next node.
 	public LinkedList<Node> updatePath(Node goalNode, Node rootNode){
 		Queue<Node> q = new LinkedList<Node>();
 		Node[][] worldNodes = initWorldMap();
 		LinkedList<Node> path = new LinkedList<Node>();
 		q.add(rootNode);
 		rootNode.previous = null;
-		System.out.println("goalx: " + goalNode.x + " goaly: " + goalNode.y);
 
 		while(!q.isEmpty()){
 			Node currentNode = q.peek();
@@ -297,20 +303,14 @@ class MyAgentProgram implements AgentProgram {
 		System.out.println("percept: " + p);
 		state.printWorldDebug();
 		state.updatePosition(p);
-		
-		if(doneCleaning){
-			System.out.println("START PRINTING PATH");
-			for (int i = 0; i < path.size(); i++) {
-				System.out.println("path: " + path.get(i).x + ", "+path.get(i).y);
-			}			
-			System.out.println("END PRINTING PATH");
-		}
 
+		// Go to the start position after random moves.
 		if(!home && !startedHomeJourney){
 			path = updatePath(new Node(1, 1, null), new Node(state.agent_x_position, state.agent_y_position, null));
 			startedHomeJourney = true;
 		}
 		
+		// Done cleaning, and we're home.
 		else if(home && doneCleaning){
 			return NoOpAction.NO_OP;
 		}
@@ -322,11 +322,9 @@ class MyAgentProgram implements AgentProgram {
 		}
 		
 		else if(bump){
-			System.out.println("---------BUMP--------------");
 			switch (state.agent_direction) {
 			case MyAgentState.NORTH:
 				state.updateWorld(state.agent_x_position,state.agent_y_position-1,state.WALL);
-				
 				break;
 			case MyAgentState.EAST:
 				state.updateWorld(state.agent_x_position+1,state.agent_y_position,state.WALL);
@@ -338,7 +336,11 @@ class MyAgentProgram implements AgentProgram {
 				state.updateWorld(state.agent_x_position-1,state.agent_y_position,state.WALL);
 				break;
 			}
+			
+			// We found a bump, and have to calculate a new path to the goal (located at (xCount, yCount))
 			path = updatePath(new Node(xCount, yCount, null), new Node(state.agent_x_position, state.agent_y_position, null));
+			
+			// In case the new goal is not possible, find a new one until one is possible.
 			while(path.isEmpty() || state.world[xCount][yCount] == state.WALL){
 				updateGoal();
 				path = updatePath(new Node(xCount, yCount, null), new Node(state.agent_x_position, state.agent_y_position, null));
@@ -346,18 +348,21 @@ class MyAgentProgram implements AgentProgram {
 
 
 		}
+		
+		// Path is empty means we are at our goal -> find path to a new goal.
 		else if(path.isEmpty()){
 			if(xCount == state.agent_x_position && yCount == state.agent_y_position){
 				updateGoal();
 			}
+		
+			// In case path is not possible, find a new one.
 			while(path.isEmpty()){
 				path = updatePath(new Node(xCount, yCount, null), new Node(state.agent_x_position, state.agent_y_position, null));
 				updateGoal();
 			}
-			System.out.println("New Goal: " + xCount +", " + yCount);
-	
 		}
 		
+		// We keep turning left until we're facing the correct direction depending on our next goal.
 		if(!correctDirection(path.peekLast().x, path.peekLast().y)){
 			state.agent_direction = ((state.agent_direction-1) % 4);
 			if (state.agent_direction<0) 
@@ -366,7 +371,8 @@ class MyAgentProgram implements AgentProgram {
 			return LIUVacuumEnvironment.ACTION_TURN_LEFT;
 		}
 
-
+		
+		// If nothing above triggered, we're in the clear to move forward.
 		else{
 			if(!bump) {
 				path.removeLast();
