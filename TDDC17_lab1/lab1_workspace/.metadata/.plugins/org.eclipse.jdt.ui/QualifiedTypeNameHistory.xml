@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="aima.core.agent.impl.NoOpAction"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.awt.Point"/>
+<fullyQualifiedTypeName name="java.util.Queue"/>
+<fullyQualifiedTypeName name="java.util.LinkedList"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="tddc17.MyAgentState.Node"/>
 <fullyQualifiedTypeName name="aima.core.environment.liuvacuum.LIUVacuumEnvironment"/>
+<fullyQualifiedTypeName name="aima.core.agent.impl.NoOpAction"/>
+<fullyQualifiedTypeName name="java.util.Arrays"/>
 <fullyQualifiedTypeName name="tddc17.MyAgentState"/>
 </qualifiedTypeNameHistroy>

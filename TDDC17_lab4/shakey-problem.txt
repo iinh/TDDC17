@@ -1,0 +1,23 @@
+(define	(problem s-w-problem1)
+	(:domain shakeys-world)
+	(:objects
+		r1		- robot
+		locbox locswitch locstart	- location
+		b1		- box
+		s1    - switch
+		room1 - room
+  )
+
+  (:init
+    (attached s1 locswitch)
+    (on r1 locstart)
+		(in locbox room1)
+		(in locswitch room1)
+		(in locstart room1)
+
+  )
+
+	(:goal
+		(lightson room1)
+	)
+)

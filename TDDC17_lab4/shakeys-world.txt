@@ -1,0 +1,44 @@
+(define
+  (domain shakeys-world)
+  (:requirements
+    :strips
+    :typing)
+
+  (:types
+    location
+    room
+    box
+    switch
+    robot)
+
+  (:predicates
+    (kappa ?thing ?loc)
+    (adj ?room1 ?room2)
+    (on ?r - robot ?loc - location)
+    (at ?b - box ?loc - location)
+    (attached ?s - switch ?loc - location)
+    (lightson ?room - room)
+    (lightsoff ?room - room)
+    (in ?loc - location ?ro - room)
+  )
+
+  (:action move
+    :parameters (?r - robot ?from ?to - location)
+
+    :precondition (on ?r ?from)
+
+    :effect (and (on ?r ?to) (not(on ?r ?from)))
+  )
+
+  (:action switchlightson
+    :parameters (?s - switch ?r - robot ?room - room ?loc - location)
+
+    :precondition (and (on ?r ?loc) (attached ?s ?loc) (in ?loc ?room))
+
+    :effect(lightson ?room)
+  )
+
+  (:action change_room
+    :parameter()
+
+)

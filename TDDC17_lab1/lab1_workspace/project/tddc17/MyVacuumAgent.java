@@ -345,8 +345,6 @@ class MyAgentProgram implements AgentProgram {
 				updateGoal();
 				path = updatePath(new Node(xCount, yCount, null), new Node(state.agent_x_position, state.agent_y_position, null));
 			}
-
-
 		}
 		
 		// Path is empty means we are at our goal -> find path to a new goal.

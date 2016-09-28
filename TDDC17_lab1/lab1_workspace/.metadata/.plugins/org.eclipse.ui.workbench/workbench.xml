@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workbench progressCount="21" version="2.0">
 <workbenchAdvisor/>
-<window height="1055" maximized="true" width="960" x="0" y="0">
+<window height="1053" maximized="true" width="954" x="0" y="0">
 <fastViewData fastViewLocation="1024"/>
 <perspectiveBar>
 <itemSize x="160"/>
@@ -22,7 +22,7 @@
 <coolItem id="group.nav" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="214" y="30"/>
 <coolItem id="group.editor" itemType="typeGroupMarker"/>
-<coolItem id="org.eclipse.jdt.ui.ClassFileEditorNoSource" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="org.eclipse.jdt.ui.ClassFileEditorNoSource" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="group.help" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.help" itemType="typeToolBarContribution" x="-1" y="-1"/>
 </coolbarLayout>
@@ -34,27 +34,17 @@
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
 <part id="1"/>
-<part id="2"/>
-<part id="3"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MyVacuumAgent.java" partName="MyVacuumAgent.java" path="/home/nikha864/TDDC17_lab1/lab1_workspace/project/tddc17/MyVacuumAgent.java" title="MyVacuumAgent.java" tooltip="project/tddc17/MyVacuumAgent.java" workbook="DefaultEditorWorkbook">
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MyVacuumAgent.java" partName="MyVacuumAgent.java" path="/home/nikha864/TDDC17/TDDC17_lab1/lab1_workspace/project/tddc17/MyVacuumAgent.java" title="MyVacuumAgent.java" tooltip="project/tddc17/MyVacuumAgent.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/project/tddc17/MyVacuumAgent.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="6720" selectionTopPixel="3344"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="10909" selectionTopPixel="5473"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="RandomVacuumAgent.java" partName="RandomVacuumAgent.java" path="/home/nikha864/TDDC17_lab1/lab1_workspace/project/tddc17/RandomVacuumAgent.java" title="RandomVacuumAgent.java" tooltip="project/tddc17/RandomVacuumAgent.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/project/tddc17/RandomVacuumAgent.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ReactiveVacuumAgent.java" partName="ReactiveVacuumAgent.java" path="/home/nikha864/TDDC17_lab1/lab1_workspace/project/tddc17/ReactiveVacuumAgent.java" title="ReactiveVacuumAgent.java" tooltip="project/tddc17/ReactiveVacuumAgent.java" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ReactiveVacuumAgent.java" partName="ReactiveVacuumAgent.java" path="/home/nikha864/TDDC17/TDDC17_lab1/lab1_workspace/project/tddc17/ReactiveVacuumAgent.java" title="ReactiveVacuumAgent.java" tooltip="project/tddc17/ReactiveVacuumAgent.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/project/tddc17/ReactiveVacuumAgent.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="132"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.ClassFileEditorNoSource" name="DynamicPercept.class" partName="DynamicPercept.class" path="/tmp/DynamicPercept.class7489903938350912816.class" title="DynamicPercept.class" tooltip="aima.core.agent.impl.DynamicPercept" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" org.eclipse.jdt.ui.ClassFileIdentifier="=project/lib\/aima-core.jar&lt;aima.core.agent.impl(DynamicPercept.class"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="309" selectionTopPixel="0"/>
 </editor>
 </editors>
 <views>
@@ -64,16 +54,18 @@
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
 <expanded>
-<category IMemento.internal.id="Warnings (4 items)"/>
-<category IMemento.internal.id="Errors"/>
+<category IMemento.internal.id="Warnings (1 item)"/>
 </expanded>
-<columnWidths org.eclipse.ui.ide.locationField="53" org.eclipse.ui.ide.markerType="1157" org.eclipse.ui.ide.pathField="103" org.eclipse.ui.ide.resourceField="78" org.eclipse.ui.ide.severityAndDescriptionField="250"/>
+<columnWidths org.eclipse.ui.ide.locationField="53" org.eclipse.ui.ide.markerType="1235" org.eclipse.ui.ide.pathField="103" org.eclipse.ui.ide.resourceField="78" org.eclipse.ui.ide.severityAndDescriptionField="250"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.pathField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.locationField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.markerType"/>
 </viewState>
+</view>
+<view id="org.eclipse.ui.console.ConsoleView" partName="Console">
+<viewState/>
 </view>
 <view id="org.eclipse.ui.views.ContentOutline" partName="Outline">
 <viewState/>
@@ -121,6 +113,7 @@
 <view id="org.eclipse.ui.navigator.ProjectExplorer"/>
 <view id="org.eclipse.ui.views.ContentOutline"/>
 <view id="org.eclipse.ui.views.ProblemView"/>
+<view id="org.eclipse.ui.console.ConsoleView"/>
 <fastViewBars/>
 <layout>
 <mainWindow>
@@ -144,15 +137,17 @@
 <page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
 </folder>
 </info>
-<info part="org.eclipse.gef.ui.palette_view" ratio="0.25940594" ratioLeft="262" ratioRight="748" relationship="2" relative="topLeft"/>
-<info folder="true" part="bottomRight" ratio="0.65891474" ratioLeft="425" ratioRight="220" relationship="4" relative="org.eclipse.gef.ui.palette_view">
-<folder activePageID="org.eclipse.ui.views.ProblemView" appearance="2" expanded="2">
+<info part="org.eclipse.gef.ui.palette_view" ratio="0.20062861" ratioLeft="383" ratioRight="1526" relationship="2" relative="topLeft"/>
+<info folder="true" part="bottomRight" ratio="0.9598263" ratioLeft="884" ratioRight="37" relationship="4" relative="org.eclipse.gef.ui.palette_view">
+<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
+<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
 <page content="org.eclipse.ui.views.TaskList" label="LabelNotFound"/>
 <page content="org.eclipse.team.ui.GenericHistoryView" label="LabelNotFound"/>
 <page content="org.tigris.subversion.subclipse.ui.history.HistoryView" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
+<part id="1"/>
 </presentation>
 </folder>
 </info>
@@ -181,96 +176,157 @@
 <navigationHistory>
 <editors>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/project/tddc17/MyVacuumAgent.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/project/tddc17/RandomVacuumAgent.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/project/tddc17/ReactiveVacuumAgent.java"/>
-<editor factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditorNoSource" org.eclipse.jdt.ui.ClassFileIdentifier="=project/lib\/aima-core.jar&lt;aima.core.agent.impl(DynamicPercept.class"/>
 </editors>
 <item historyLabel="MyVacuumAgent.java" index="0">
-<position info="not_deleted" x="576" y="0"/>
-</item>
-<item historyLabel="MyVacuumAgent.java" index="0">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="MyVacuumAgent.java" index="0">
-<position info="not_deleted" x="2449" y="0"/>
-</item>
-<item historyLabel="RandomVacuumAgent.java" index="1">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="ReactiveVacuumAgent.java" index="2">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="MyVacuumAgent.java" index="0">
-<position info="not_deleted" x="2449" y="0"/>
-</item>
-<item historyLabel="MyVacuumAgent.java" index="0">
-<position info="not_deleted" x="3571" y="0"/>
-</item>
-<item historyLabel="MyVacuumAgent.java" index="0">
-<position info="not_deleted" x="2690" y="25"/>
-</item>
-<item historyLabel="MyVacuumAgent.java" index="0">
-<position info="not_deleted" x="7819" y="0"/>
-</item>
-<item historyLabel="MyVacuumAgent.java" index="0">
-<position info="not_deleted" x="5799" y="0"/>
+<position info="not_deleted" x="5346" y="0"/>
 </item>
 <item historyLabel="MyVacuumAgent.java" index="0">
 <position/>
 </item>
 <item historyLabel="MyVacuumAgent.java" index="0">
-<position info="not_deleted" x="5799" y="0"/>
+<position/>
 </item>
 <item historyLabel="MyVacuumAgent.java" index="0">
-<position info="not_deleted" x="5108" y="0"/>
+<position info="not_deleted" x="4500" y="0"/>
 </item>
 <item historyLabel="MyVacuumAgent.java" index="0">
-<position info="not_deleted" x="4725" y="0"/>
+<position info="not_deleted" x="4476" y="0"/>
 </item>
 <item historyLabel="MyVacuumAgent.java" index="0">
-<position info="not_deleted" x="4942" y="0"/>
+<position info="not_deleted" x="558" y="0"/>
 </item>
 <item historyLabel="MyVacuumAgent.java" index="0">
-<position info="not_deleted" x="5799" y="0"/>
+<position info="not_deleted" x="5341" y="0"/>
 </item>
 <item historyLabel="MyVacuumAgent.java" index="0">
-<position info="not_deleted" x="7819" y="0"/>
+<position info="not_deleted" x="4331" y="0"/>
 </item>
 <item historyLabel="MyVacuumAgent.java" index="0">
-<position info="not_deleted" x="4743" y="0"/>
+<position info="not_deleted" x="4367" y="0"/>
 </item>
 <item historyLabel="MyVacuumAgent.java" index="0">
-<position info="not_deleted" x="1179" y="14"/>
+<position info="not_deleted" x="4669" y="0"/>
 </item>
 <item historyLabel="MyVacuumAgent.java" index="0">
-<position info="not_deleted" x="3559" y="25"/>
+<position info="not_deleted" x="3766" y="0"/>
 </item>
 <item historyLabel="MyVacuumAgent.java" index="0">
-<position info="not_deleted" x="4477" y="0"/>
-</item>
-<item historyLabel="DynamicPercept.class" index="3">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="ReactiveVacuumAgent.java" index="2">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="RandomVacuumAgent.java" index="1">
-<position info="not_deleted" x="0" y="0"/>
+<position info="not_deleted" x="3810" y="0"/>
 </item>
 <item historyLabel="MyVacuumAgent.java" index="0">
-<position info="not_deleted" x="4477" y="0"/>
+<position/>
 </item>
 <item historyLabel="MyVacuumAgent.java" index="0">
-<position info="not_deleted" x="2832" y="0"/>
+<position/>
 </item>
 <item historyLabel="MyVacuumAgent.java" index="0">
-<position info="not_deleted" x="1179" y="14"/>
+<position info="not_deleted" x="3956" y="0"/>
 </item>
 <item historyLabel="MyVacuumAgent.java" index="0">
-<position info="not_deleted" x="7773" y="0"/>
+<position info="not_deleted" x="3954" y="0"/>
+</item>
+<item historyLabel="MyVacuumAgent.java" index="0">
+<position info="not_deleted" x="3937" y="0"/>
+</item>
+<item historyLabel="MyVacuumAgent.java" index="0">
+<position info="not_deleted" x="3034" y="0"/>
+</item>
+<item historyLabel="MyVacuumAgent.java" index="0">
+<position info="not_deleted" x="3031" y="0"/>
+</item>
+<item historyLabel="MyVacuumAgent.java" index="0">
+<position info="not_deleted" x="10105" y="0"/>
+</item>
+<item historyLabel="MyVacuumAgent.java" index="0">
+<position/>
+</item>
+<item historyLabel="MyVacuumAgent.java" index="0">
+<position info="not_deleted" x="10105" y="0"/>
+</item>
+<item historyLabel="MyVacuumAgent.java" index="0">
+<position info="not_deleted" x="8296" y="0"/>
+</item>
+<item historyLabel="MyVacuumAgent.java" index="0">
+<position info="not_deleted" x="8224" y="0"/>
+</item>
+<item historyLabel="MyVacuumAgent.java" index="0">
+<position info="not_deleted" x="4918" y="0"/>
+</item>
+<item historyLabel="MyVacuumAgent.java" index="0">
+<position info="not_deleted" x="5216" y="0"/>
+</item>
+<item historyLabel="MyVacuumAgent.java" index="0">
+<position/>
+</item>
+<item historyLabel="MyVacuumAgent.java" index="0">
+<position/>
+</item>
+<item historyLabel="MyVacuumAgent.java" index="0">
+<position info="not_deleted" x="10105" y="0"/>
+</item>
+<item historyLabel="MyVacuumAgent.java" index="0">
+<position info="not_deleted" x="9703" y="0"/>
+</item>
+<item historyLabel="MyVacuumAgent.java" index="0">
+<position info="not_deleted" x="5216" y="0"/>
+</item>
+<item historyLabel="MyVacuumAgent.java" index="0">
+<position info="not_deleted" x="4552" y="0"/>
+</item>
+<item historyLabel="MyVacuumAgent.java" index="0">
+<position info="not_deleted" x="4675" y="0"/>
+</item>
+<item historyLabel="MyVacuumAgent.java" index="0">
+<position info="not_deleted" x="4780" y="0"/>
+</item>
+<item historyLabel="MyVacuumAgent.java" index="0">
+<position/>
+</item>
+<item historyLabel="MyVacuumAgent.java" index="0">
+<position/>
+</item>
+<item historyLabel="MyVacuumAgent.java" index="0">
+<position info="not_deleted" x="4861" y="0"/>
+</item>
+<item historyLabel="MyVacuumAgent.java" index="0">
+<position/>
+</item>
+<item historyLabel="MyVacuumAgent.java" index="0">
+<position info="not_deleted" x="5210" y="0"/>
+</item>
+<item historyLabel="MyVacuumAgent.java" index="0">
+<position/>
+</item>
+<item historyLabel="MyVacuumAgent.java" index="0">
+<position/>
+</item>
+<item historyLabel="MyVacuumAgent.java" index="0">
+<position info="not_deleted" x="4850" y="10"/>
+</item>
+<item historyLabel="MyVacuumAgent.java" index="0">
+<position info="not_deleted" x="9944" y="0"/>
+</item>
+<item historyLabel="MyVacuumAgent.java" index="0">
+<position info="not_deleted" x="9938" y="0"/>
+</item>
+<item historyLabel="MyVacuumAgent.java" index="0">
+<position info="not_deleted" x="8296" y="0"/>
+</item>
+<item historyLabel="MyVacuumAgent.java" index="0">
+<position info="not_deleted" x="9205" y="0"/>
+</item>
+<item historyLabel="MyVacuumAgent.java" index="0">
+<position info="not_deleted" x="5358" y="0"/>
+</item>
+<item historyLabel="MyVacuumAgent.java" index="0">
+<position info="not_deleted" x="3993" y="12"/>
+</item>
+<item historyLabel="ReactiveVacuumAgent.java" index="1">
+<position info="not_deleted" x="309" y="0"/>
 </item>
 <item active="true" historyLabel="MyVacuumAgent.java" index="0">
-<position info="not_deleted" x="7760" y="0"/>
+<position info="not_deleted" x="11135" y="13"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -289,17 +345,17 @@
 </trimLayout>
 </window>
 <mruList>
-<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditorNoSource" name="DynamicPercept.class" tooltip="aima.core.agent.impl.DynamicPercept">
-<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=project/lib\/aima-core.jar&lt;aima.core.agent.impl(DynamicPercept.class"/>
-</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ReactiveVacuumAgent.java" tooltip="project/tddc17/ReactiveVacuumAgent.java">
 <persistable path="/project/tddc17/ReactiveVacuumAgent.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="RandomVacuumAgent.java" tooltip="project/tddc17/RandomVacuumAgent.java">
-<persistable path="/project/tddc17/RandomVacuumAgent.java"/>
-</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MyVacuumAgent.java" tooltip="project/tddc17/MyVacuumAgent.java">
 <persistable path="/project/tddc17/MyVacuumAgent.java"/>
+</file>
+<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditorNoSource" name="DynamicPercept.class" tooltip="aima.core.agent.impl.DynamicPercept">
+<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=project/lib\/aima-core.jar&lt;aima.core.agent.impl(DynamicPercept.class"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="RandomVacuumAgent.java" tooltip="project/tddc17/RandomVacuumAgent.java">
+<persistable path="/project/tddc17/RandomVacuumAgent.java"/>
 </file>
 </mruList>
 </workbench>

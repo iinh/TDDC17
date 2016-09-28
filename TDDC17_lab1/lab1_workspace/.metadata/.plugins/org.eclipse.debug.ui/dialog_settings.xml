@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<section name="org.eclipse.debug.ui.SCOPED_SAVE_SELECTION_DIALOG">
+		<item value="297" key="DIALOG_WIDTH"/>
+		<item value="396" key="DIALOG_HEIGHT"/>
+		<item value="1|Noto Sans|9.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
+	</section>
 	<section name="org.eclipse.debug.ui.LAUNCH_CONFIGURATIONS_DIALOG_SECTION">
 		<item value="830" key="DIALOG_WIDTH"/>
 		<item value="133" key="DIALOG_Y_ORIGIN"/>
@@ -11,10 +16,10 @@
 		<item value="762" key="org.eclipse.debug.ui.DIALOG_SASH_WEIGHTS_2"/>
 	</section>
 	<section name="org.eclipse.debug.ui.SELECT_LAUNCH_SHORTCUT_DIALOG">
-		<item value="360" key="DIALOG_WIDTH"/>
+		<item value="269" key="DIALOG_WIDTH"/>
 		<item value="306" key="DIALOG_Y_ORIGIN"/>
-		<item value="360" key="DIALOG_HEIGHT"/>
+		<item value="444" key="DIALOG_HEIGHT"/>
 		<item value="793" key="DIALOG_X_ORIGIN"/>
-		<item value="1|Sans|10.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
+		<item value="1|Noto Sans|9.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
 	</section>
 </section>

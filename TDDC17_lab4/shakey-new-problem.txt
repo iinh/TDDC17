@@ -1,0 +1,31 @@
+(define	(problem s-w-problem2)
+	(:domain shakeys-world)
+	(:objects
+		robot
+    room_1 room_2
+    start_location
+    goal_location
+    switch_1
+    door_1
+    door_1_left
+    door_1_right
+  )
+
+  (:init
+    (at robot start_location)
+    (in start_location room_1)
+    (in switch_1 room_1)
+    (not(switch_on switch_1))
+    (in door_1_left door_1)
+    (in door_1_right door_1)
+    (in door_1_left room_1)
+    (in door_1_right room_2)
+    (in goal_location room_2)
+
+
+  )
+
+  (:goal
+    (at robot goal_location)
+  )
+)

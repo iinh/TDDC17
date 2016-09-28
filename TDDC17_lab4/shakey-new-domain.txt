@@ -1,0 +1,25 @@
+(define
+  (domain shakeys-world)
+  (:requirements :strips)
+
+  (:predicates
+    (at ?object ?location)
+    (in ?location ?room)
+    (switch_on ?switch_location)
+  )
+
+  (:action move
+    :parameters (?robot ?from ?to ?room)
+    :precondition (and (in ?from ?room) (in ?to ?room) (at ?robot ?from))
+    :effect (and (at ?robot ?to) (not(at ?robot ?from)))
+  )
+
+  (:action turn_lights_on
+    :parameters (?robot ?location)
+    :precondition (and (not(switch_on ?location)) (at ?robot ?location))
+    :effect (switch_on ?location)
+  )
+
+
+
+)

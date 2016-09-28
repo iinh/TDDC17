@@ -59,7 +59,7 @@ public class CustomGraphSearch implements SearchObject {
 			for (Iterator<GridPos> i = childStates.iterator(); i.hasNext();){
 				GridPos curGridPos = i.next();
 				SearchNode childNode = new SearchNode(curGridPos, curNode);
-				//System.out.println(curNode.);
+				
 				if(!explored.contains(childNode)){
 					if(insertFront){
 						frontier.addNodeToFront(new SearchNode(curGridPos, curNode));
@@ -67,33 +67,10 @@ public class CustomGraphSearch implements SearchObject {
 					else{
 						frontier.addNodeToBack(new SearchNode(curGridPos, curNode));
 					}
-				}
-				
-			}
-			
+				}		
+			}	
 		}
 		
-		/*
-		 * 1: State: Map, med information om allt. Action: Beräkna path, gå path.
-		 * 	  Branching factor: 4
-		 * 
-		 * 2: BFS: Första möjliga väg
-		 *    UCS: Hittar en optimal väg.
-		 *    
-		 * 3: c) max (h1,h2)
-		 * 
-		 * 4: h(n) = Manhattan distance
-		 *    g(n) = Number of steps back to the start.'
-		 *    Yeaihh boi.
-		 *    
-		 * 5:
-		 *    
-		 * 
-		 * 7:
-		 * A*	  
-		 * 
-		 * 
-		 */
 		
 		/* Some hints:
 		 * -Read early part of chapter 3 in the book!
