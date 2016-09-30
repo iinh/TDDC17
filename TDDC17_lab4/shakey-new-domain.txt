@@ -7,6 +7,7 @@
     (in ?location ?room)
     (switch_on ?switch_location)
     (box ?box)
+    (small_object ?object)
 
   )
 
@@ -15,9 +16,9 @@
     :parameters (?robot ?from ?to ?room)
 
     ;;The locations need to be in the same room, the robot needs to be at ?from
-    ;; and the robot needs to be a robot(not a box)
+    ;; and the robot needs to be a robot(not a box or small object)
     :precondition (and (in ?from ?room) (in ?to ?room) (at ?robot ?from)
-                  (not(box ?robot)))
+                  (not(box ?robot)) (not(small_object ?robot)))
     :effect (and (at ?robot ?to) (not(at ?robot ?from)))
   )
 

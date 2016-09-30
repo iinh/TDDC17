@@ -10,7 +10,7 @@
     door_1_left
     door_1_right
 		box_1
-		box_start_location
+		box_1_start_location
 		protein_shake
 		small_object_location
 		spaggen
@@ -33,10 +33,11 @@
 
   (:init
 		(not(box robot))
+		(not(small_object robot))
 
 		;;Room 1
 		(box box_1)
-		(at box_1 box_start_location)
+		(at box_1 box_1_start_location)
 		(in box_1_start_location room_1)
     (in switch_1 room_1)
 		(in spaggen room_1)
@@ -56,6 +57,7 @@
 		(not(switch_on switch_2))
 		(in goal_location room_2)
 		(not(box protein_shake))
+		(small_object protein_shake)
 		(at protein_shake small_object_location)
 		(in small_object_location room_2)
 
