@@ -9,6 +9,7 @@
     (box ?box)
     (small_object ?object)
 
+
   )
 
   ;;Move the robot from ?from to ?to
@@ -60,6 +61,15 @@
     :precondition (and (at ?robot ?box) (at ?box ?location) (not(box ?robot))
                  (not(small_object ?robot) (box ?box)))
     :effect (and (at ?robot ?location) (not(at ?robot ?box)))
+  )
+
+  (:action grab_object
+    :parameters (?robot ?object ?location)
+
+    :precondition (and (at ?robot ?location) (at ?object ?location)
+                  (small_object ?object))
+
+    :effect (and (at ?object ?robot) (not(at ?object ?location)))
   )
 
 
