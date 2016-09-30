@@ -6,6 +6,7 @@
     (at ?object ?location)
     (in ?location ?room)
     (switch_on ?switch_location)
+    (pushable ?box)
   )
 
   (:action move
@@ -18,6 +19,13 @@
     :parameters (?robot ?location)
     :precondition (and (not(switch_on ?location)) (at ?robot ?location))
     :effect (switch_on ?location)
+  )
+
+  (:action push
+    :parameters (?robot ?box ?from ?to ?room)
+    :precondition (and (at ?box ?from) (at ?robot ?from) (pushable ?box))
+    :effect (and (at ?robot ?to) (not(at ?robot ?from)) and (at ?box ?to)
+            (not(at ?box ?from)))
   )
 
 
