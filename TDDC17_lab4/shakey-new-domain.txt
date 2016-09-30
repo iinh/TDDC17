@@ -72,6 +72,15 @@
     :effect (and (at ?object ?robot) (not(at ?object ?location)))
   )
 
+  (:action move_object
+    :parameters (?robot ?object ?from ?to)
+
+    :precondition (and (at ?object ?robot) (at ?robot ?from) (small_object ?object)
+                  (in ?from ?room) (in ?to ?room) (not(box ?robot)) (not(small_object ?robot)))
+    :effect (and (at ?robot ?to) (not(at ?robot ?from)))
+  )
+
+
 
 
 
