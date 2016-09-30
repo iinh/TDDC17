@@ -50,7 +50,7 @@
     :parameters (?robot ?box ?location)
 
     :precondition (and (at ?robot ?location) (at ?box ?location) (not(box ?robot))
-                 (not(small_object ?robot) (box ?box)))
+                 (not(small_object ?robot)) (box ?box))
     :effect (and (at ?robot ?box) (not(at ?robot ?location)))
   )
 
@@ -59,7 +59,7 @@
     :parameters (?robot ?box ?location)
 
     :precondition (and (at ?robot ?box) (at ?box ?location) (not(box ?robot))
-                 (not(small_object ?robot) (box ?box)))
+                 (not(small_object ?robot)) (box ?box))
     :effect (and (at ?robot ?location) (not(at ?robot ?box)))
   )
 
@@ -73,7 +73,7 @@
   )
 
   (:action move_object
-    :parameters (?robot ?object ?from ?to)
+    :parameters (?robot ?object ?from ?to ?room)
 
     :precondition (and (at ?object ?robot) (at ?robot ?from) (small_object ?object)
                   (in ?from ?room) (in ?to ?room) (not(box ?robot)) (not(small_object ?robot)))
