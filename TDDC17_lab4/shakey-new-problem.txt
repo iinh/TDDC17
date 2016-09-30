@@ -9,7 +9,7 @@
     door_1
     door_1_left
     door_1_right
-		box
+		box_1
 		box_start_location
 		protein_shake
 		small_object_location
@@ -24,7 +24,7 @@
 ;;  |       ---             |                       |
 ;;  |       | |           door1      robot          |
 ;;  |       ---           (wide)                    |
-;;  |       box             |                       |
+;;  |       box_1           |                       |
 ;;  |                       |        object         |
 ;;  |    spaggen            |                       |
 ;;  |        room1          |        room2          |
@@ -32,12 +32,12 @@
 
 
   (:init
-		(not(pushable robot))
+		(not(box robot))
 
 		;;Room 1
-		(pushable box)
-		(at box box_start_location)
-		(in box_start_location room_1)
+		(box box_1)
+		(at box_1 box_start_location)
+		(in box_1_start_location room_1)
     (in switch_1 room_1)
 		(in spaggen room_1)
     (not(switch_on switch_1))
@@ -55,7 +55,7 @@
 		(in switch_2 room_2)
 		(not(switch_on switch_2))
 		(in goal_location room_2)
-		(not(pushable protein_shake))
+		(not(box protein_shake))
 		(at protein_shake small_object_location)
 		(in small_object_location room_2)
 
@@ -63,6 +63,6 @@
   )
 
   (:goal
-    (at box goal_location)
+    (at box_1 goal_location)
   )
 )
