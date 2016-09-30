@@ -34,7 +34,6 @@
 		(in box_start_location room_1)
     (in switch_1 room_1)
     (not(switch_on switch_1))
-		(in goal_location room_1)
 
 
 		;;Door 1 (between room 1 and 2)
@@ -48,10 +47,12 @@
 		(in start_location room_2)
 		(in switch_2 room_2)
 		(not(switch_on switch_2))
+		(in goal_location room_2)
+
 
   )
 
   (:goal
-    (at robot goal_location)
+    (at box goal_location)
   )
 )
