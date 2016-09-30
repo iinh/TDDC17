@@ -65,6 +65,6 @@
   )
 
   (:goal
-    (at box_1 goal_location)
+    (at robot box_1)
   )
 )

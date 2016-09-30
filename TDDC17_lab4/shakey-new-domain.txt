@@ -40,6 +40,16 @@
             (not(at ?box ?from) ))
   )
 
+  (:action climb_up
+    :parameters (?robot ?box ?location)
+
+    :precondition (and (at ?robot ?location) (at ?box ?location) (not(box ?robot))
+                 (not(small_object ?robot)))
+    :effect (and (at ?robot ?box) (not(at ?robot ?location)))
+
+
+  )
+
 
 
 )
