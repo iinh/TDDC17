@@ -29,12 +29,14 @@
 
 
   (:init
+		(not(pushable robot))
+
 		;;Room 1
+		(pushable box)
 		(at box box_start_location)
 		(in box_start_location room_1)
     (in switch_1 room_1)
     (not(switch_on switch_1))
-
 
 		;;Door 1 (between room 1 and 2)
     (in door_1_left door_1)

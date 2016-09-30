@@ -11,7 +11,8 @@
 
   (:action move
     :parameters (?robot ?from ?to ?room)
-    :precondition (and (in ?from ?room) (in ?to ?room) (at ?robot ?from))
+    :precondition (and (in ?from ?room) (in ?to ?room) (at ?robot ?from)
+                  (not(pushable ?robot)))
     :effect (and (at ?robot ?to) (not(at ?robot ?from)))
   )
 
@@ -23,9 +24,10 @@
 
   (:action push
     :parameters (?robot ?box ?from ?to ?room)
-    :precondition (and (at ?box ?from) (at ?robot ?from) (pushable ?box))
-    :effect (and (at ?robot ?to) (not(at ?robot ?from)) and (at ?box ?to)
-            (not(at ?box ?from)))
+    :precondition (and (at ?box ?from) (at ?robot ?from) (pushable ?box)
+                  (in ?from ?room) (in ?to ?room) (not(pushable ?robot)))
+    :effect (and (at ?robot ?to) (not(at ?robot ?from)) (at ?box ?to)
+            (not(at ?box ?from) ))
   )
 
 
