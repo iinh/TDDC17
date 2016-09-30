@@ -11,14 +11,14 @@
     door_1_right
 		box
   )
-
+;;	Map
 ;;	-------------------------------------------------
 ;;  |                       |                       |
 ;;  |                       |                       |
 ;;  |       light switch 1 -|- light switch2        |
 ;;  |                       |                       |
 ;;  |       ---             |                       |
-;;  |       | |           door1      shakey         |
+;;  |       | |           door1      robot          |
 ;;  |       ---           (wide)                    |
 ;;  |       box             |                       |
 ;;  |                       |                       |
@@ -29,10 +29,11 @@
 
   (:init
 		;;Room 1
-    (at robot start_location)
-    (in start_location room_1)
+		(in box room_1)
     (in switch_1 room_1)
     (not(switch_on switch_1))
+		(in goal_location room_1)
+
 
 		;;Door 1 (between room 1 and 2)
     (in door_1_left door_1)
@@ -41,7 +42,10 @@
     (in door_1_right room_2)
 
 		;;Room 2
-    (in goal_location room_2)
+		(at robot start_location)
+		(in start_location room_2)
+		(in switch_2 room_2)
+		(not(switch_on switch_2))
 
 
   )
