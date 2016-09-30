@@ -80,6 +80,18 @@
     :effect (and (at ?robot ?to) (not(at ?robot ?from)))
   )
 
+  (:action drop_object
+    :parameters (?robot ?object ?location)
+
+    :precondition (and (at ?robot ?location) (at ?object ?robot)
+                  (small_object ?object))
+
+    :effect (and (at ?object ?location) (not(at ?object ?robot)))
+  )
+
+
+
+
 
 
 
