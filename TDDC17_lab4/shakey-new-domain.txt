@@ -18,12 +18,15 @@
     ;;The locations need to be in the same room, the robot needs to be at ?from
     ;; and the robot needs to be a robot(not a box or small object)
     :precondition (and (in ?from ?room) (in ?to ?room) (at ?robot ?from)
-                  (not(box ?robot)) (not(small_object ?robot)))
+                  (not(box ?robot)) (not(small_object ?robot)) (not(box ?to)))
     :effect (and (at ?robot ?to) (not(at ?robot ?from)))
   )
 
+
   (:action turn_lights_on
     :parameters (?robot ?location ?box)
+
+    ;;The box needs to be at a switch and the robot on top of the box
     :precondition (and (not(switch_on ?location)) (at ?robot ?box)
                   (box ?box) (at ?box ?location))
     :effect (switch_on ?location)
@@ -46,11 +49,20 @@
     :parameters (?robot ?box ?location)
 
     :precondition (and (at ?robot ?location) (at ?box ?location) (not(box ?robot))
-                 (not(small_object ?robot)))
+                 (not(small_object ?robot) (box ?box)))
     :effect (and (at ?robot ?box) (not(at ?robot ?location)))
-
-
   )
+
+  ;;The robot climbs down from a box
+  (:action climb_down
+    :parameters (?robot ?box ?location)
+
+    :precondition (and (at ?robot ?box) (at ?box ?location) (not(box ?robot))
+                 (not(small_object ?robot) (box ?box)))
+    :effect (and (at ?robot ?location) (not(at ?robot ?box)))
+  )
+
+
 
 
 
