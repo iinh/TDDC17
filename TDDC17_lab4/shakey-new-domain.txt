@@ -9,8 +9,12 @@
     (pushable ?box)
   )
 
+  ;;Move the robot from ?from to ?to
   (:action move
     :parameters (?robot ?from ?to ?room)
+
+    ;;The locations need to be in the same room, the robot needs to be at ?from
+    ;; and the robot needs to be a robot(not a box)
     :precondition (and (in ?from ?room) (in ?to ?room) (at ?robot ?from)
                   (not(pushable ?robot)))
     :effect (and (at ?robot ?to) (not(at ?robot ?from)))
@@ -22,8 +26,12 @@
     :effect (switch_on ?location)
   )
 
+  ;;Push a box between two locations
   (:action push
     :parameters (?robot ?box ?from ?to ?room)
+
+    ;;The box and robot needs to be at the same location and you can only move
+    ;; between locations in the same room
     :precondition (and (at ?box ?from) (at ?robot ?from) (pushable ?box)
                   (in ?from ?room) (in ?to ?room) (not(pushable ?robot)))
     :effect (and (at ?robot ?to) (not(at ?robot ?from)) (at ?box ?to)
