@@ -40,9 +40,9 @@
 		(at box_1 box_1_start_location)
 		(in box_1_start_location room_1)
     (in switch_1 room_1)
+		(switch switch_1)
+		(not(switch_on switch_1))
 		(in spaggen room_1)
-    (not(switch_on switch_1))
-
 
 		;;Door 1 (between room 1 and 2)
     (in door_1_left door_1)
@@ -54,6 +54,7 @@
 		(at robot start_location)
 		(in start_location room_2)
 		(in switch_2 room_2)
+		(switch switch_2)
 		(not(switch_on switch_2))
 		(in goal_location room_2)
 		(not(box protein_shake))

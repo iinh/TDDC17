@@ -8,6 +8,7 @@
     (switch_on ?switch_location)
     (box ?box)
     (small_object ?object)
+    (switch ?location)
 
 
   )
@@ -29,7 +30,7 @@
 
     ;;The box needs to be at a switch and the robot on top of the box
     :precondition (and (not(switch_on ?location)) (at ?robot ?box)
-                  (box ?box) (at ?box ?location))
+                  (box ?box) (at ?box ?location) (switch ?location))
     :effect (switch_on ?location)
   )
 
@@ -40,7 +41,8 @@
     ;;The box and robot needs to be at the same location and you can only move
     ;; between locations in the same room
     :precondition (and (at ?box ?from) (at ?robot ?from) (box ?box)
-                  (in ?from ?room) (in ?to ?room) (not(box ?robot)))
+                  (in ?from ?room) (in ?to ?room) (not(box ?robot))
+                  (not(small_object ?robot)))
     :effect (and (at ?robot ?to) (not(at ?robot ?from)) (at ?box ?to)
             (not(at ?box ?from) ))
   )
@@ -64,10 +66,11 @@
   )
 
   (:action grab_object
-    :parameters (?robot ?object ?location)
+    :parameters (?robot ?object ?location ?switch_location ?room)
 
     :precondition (and (at ?robot ?location) (at ?object ?location)
-                  (small_object ?object))
+                  (small_object ?object) (in ?location ?room)
+                  (in ?switch_location ?room) (switch_on ?switch_location))
 
     :effect (and (at ?object ?robot) (not(at ?object ?location)))
   )
