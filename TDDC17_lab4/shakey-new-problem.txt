@@ -65,6 +65,6 @@
   )
 
   (:goal
-    (at robot box_1)
+    (switch_on switch_1)
   )
 )

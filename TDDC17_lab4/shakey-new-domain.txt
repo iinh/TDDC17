@@ -23,8 +23,9 @@
   )
 
   (:action turn_lights_on
-    :parameters (?robot ?location)
-    :precondition (and (not(switch_on ?location)) (at ?robot ?location))
+    :parameters (?robot ?location ?box)
+    :precondition (and (not(switch_on ?location)) (at ?robot ?box)
+                  (box ?box) (at ?box ?location))
     :effect (switch_on ?location)
   )
 
@@ -40,6 +41,7 @@
             (not(at ?box ?from) ))
   )
 
+  ;;The robot climbs up on a box
   (:action climb_up
     :parameters (?robot ?box ?location)
 
