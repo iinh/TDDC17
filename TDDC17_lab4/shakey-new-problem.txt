@@ -1,5 +1,8 @@
 (define	(problem s-w-problem2)
 	(:domain shakeys-world)
+	(:requirements
+	 	:strips
+		:typing)
 	(:objects
 		robot
     room_1 room_2
@@ -14,6 +17,12 @@
 		protein_shake
 		small_object_location
 		spaggen
+
+		box1
+
+
+		loc1
+
   )
 ;;	Map
 ;;	-------------------------------------------------
@@ -62,10 +71,16 @@
 		(at protein_shake small_object_location)
 		(in small_object_location room_2)
 
+		(box box1)
+		(at box1 loc1)
+		(in loc1 room_1)
+
+
 
   )
 
   (:goal
     (at protein_shake spaggen)
+
   )
 )
