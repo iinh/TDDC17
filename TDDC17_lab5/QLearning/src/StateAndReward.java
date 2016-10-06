@@ -3,7 +3,7 @@
 
 public class StateAndReward {
 
-	public final static int numberOfStates = 25; // Make sure this is odd, so (numberOfStates-1)/2 is an positive integer.
+	public final static int numberOfStates = 10; // Make sure this is odd, so (numberOfStates-1)/2 is an positive integer.
 	
 	
 	/* State discretization function for the angle controller */
@@ -18,12 +18,14 @@ public class StateAndReward {
 	/* Reward function for the angle controller */
 	public static double getRewardAngle(double angle, double vx, double vy) {
 
-		double reward = 0;	
 		
-		String state = getStateAngle(angle, vx,vy);
-		reward = numberOfStates-1/2 - Math.abs(Integer.parseInt(state)-numberOfStates-1/2);
+		double reward = 2*Math.PI - Math.abs(angle);	
+		
+		//String state = getStateAngle(angle, vx,vy);
+		//reward = (numberOfStates-1)/2 - Math.abs(Integer.parseInt(state)-(numberOfStates-1)/2);
 		
 		return reward;
+		
 	}
 
 	/* State discretization function for the full hover controller */
