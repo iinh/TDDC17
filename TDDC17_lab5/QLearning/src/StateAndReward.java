@@ -3,29 +3,14 @@
 
 public class StateAndReward {
 
-	
+	public final static int numberOfStates = 25; // Make sure this is odd, so (numberOfStates-1)/2 is an positive integer.
 	
 	
 	/* State discretization function for the angle controller */
 	public static String getStateAngle(double angle, double vx, double vy) {
 
-		String state = "FAILED";
-		if((angle > 0 && angle <  Math.PI/4) || (angle < 0 && angle >  -Math.PI/4)){
-			state = "NORTH";	
-		}
-		
-		else if(angle < 3*Math.PI/4  && angle >=  Math.PI/4){
-			state = "EAST";	
-		}
-		
-		else if((angle >=  3*Math.PI/4) || (angle <=  -3*Math.PI/4)){
-			state = "SOUTH";	
-		}
-		
-		
-		else if(angle > -3*Math.PI/4 && angle <=  -Math.PI/4){
-			state = "WEST";	
-		}
+		String state = Integer.toString(discretize(angle, numberOfStates, (double)-Math.PI,
+		(double)Math.PI));
 		
 		return state;
 	}
@@ -33,29 +18,11 @@ public class StateAndReward {
 	/* Reward function for the angle controller */
 	public static double getRewardAngle(double angle, double vx, double vy) {
 
-		/* TODO: IMPLEMENT THIS FUNCTION */
-		
-		double reward = 0;
+		double reward = 0;	
 		
 		String state = getStateAngle(angle, vx,vy);
+		reward = numberOfStates-1/2 - Math.abs(Integer.parseInt(state)-numberOfStates-1/2);
 		
-		if(state == "NORTH"){
-			reward = 4;
-		}
-		else if (state == "EAST"){
-			reward = 2;
-			
-		}
-		else if (state == "SOUTH"){
-			reward = 2;
-			
-		}
-		else if (state == "WEST"){
-			reward = 0;
-	
-		}
-		
-
 		return reward;
 	}
 
