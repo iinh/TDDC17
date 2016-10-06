@@ -15,25 +15,70 @@ public class StateAndReward {
 		return state;
 	}
 
+	/* State discretization function for the angle controller */
+	public static String getStateVx(double angle, double vx, double vy) {
+
+		String state = Integer.toString(discretize(vx, numberOfStates, -10, 10));
+		
+		return state;
+	}
+	
+	/* State discretization function for the angle controller */
+	public static String getStateVy(double angle, double vx, double vy) {
+
+		String state = Integer.toString(discretize(vy, numberOfStates/2, -5, 5));
+		
+		return state;
+	}
+
+
+	
 	/* Reward function for the angle controller */
 	public static double getRewardAngle(double angle, double vx, double vy) {
 
 		
-		double reward = 2*Math.PI - Math.abs(angle);	
+		double reward = Math.pow(Math.PI,6) - Math.abs(Math.pow(angle,6));	
 		
-		//String state = getStateAngle(angle, vx,vy);
-		//reward = (numberOfStates-1)/2 - Math.abs(Integer.parseInt(state)-(numberOfStates-1)/2);
+		return reward;
+		
+	}
+	
+	public static double getRewardVx(double angle, double vx, double vy){
+		double reward  = 0;
+		
+		reward = Math.pow(10,2)-Math.abs(Math.pow(vx,2));
 		
 		return reward;
 		
 	}
 
+	public static double getRewardVy(double angle, double vx, double vy){
+		double reward  = 0;
+		
+		reward = Math.pow(10,3)-Math.abs(Math.pow(vy,3));
+		
+		return reward;
+		
+	}	
+	
 	/* State discretization function for the full hover controller */
 	public static String getStateHover(double angle, double vx, double vy) {
 
 		/* TODO: IMPLEMENT THIS FUNCTION */
-
-		String state = "OneStateToRuleThemAll2";
+		// -10 < vx < 10	
+		// ^vänster   ^höger
+		
+		// -4.5 < vy < 15.5
+		//  ^upp       ^ner
+		String angle_state = Integer.toString(discretize(angle, numberOfStates*4, (double)-Math.PI,
+				(double)Math.PI));
+		
+		String vx_state = Integer.toString(discretize(vx, numberOfStates, -10, 10));
+		
+		String vy_state = Integer.toString(discretize(vy, numberOfStates/2, -5, 16));
+		
+		
+		String state = angle_state + vx_state + vy_state;
 		
 		return state;
 	}
@@ -44,6 +89,7 @@ public class StateAndReward {
 		/* TODO: IMPLEMENT THIS FUNCTION */
 		
 		double reward = 0;
+		reward = 50*getRewardAngle(angle,vx,vy) + 5*getRewardVx(angle, vx, vy) + 3*getRewardVy(angle, vx, vy);
 
 		return reward;
 	}

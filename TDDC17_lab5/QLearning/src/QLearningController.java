@@ -187,9 +187,9 @@ public class QLearningController extends Controller {
 		iteration++;
 
 		if (!paused) {
-			String new_state = StateAndReward.getStateAngle(angle.getValue(),
-					vx.getValue(), vy.getValue());
-
+			String new_state = StateAndReward.getStateHover(angle.getValue(), vx.getValue(), vy.getValue());
+					
+			//String new_state = StateAndReward.getStateHover(angle.getValue(),vx.getValue(), vy.getValue());
 			/*
 			 * Repeat the chosen action for a while, hoping to reach a new
 			 * state. This is a trick to speed up learning on this problem.
@@ -199,8 +199,9 @@ public class QLearningController extends Controller {
 					&& action_counter < REPEAT_ACTION_MAX) {
 				return;
 			}
-			double previous_reward = StateAndReward.getRewardAngle(
-					previous_angle, previous_vx, previous_vy);
+			double previous_reward = StateAndReward.getRewardHover(previous_angle, previous_vx, previous_vy);
+				
+			//double previous_reward = StateAndReward.getRewardHover(previous_angle, previous_vx, previous_vy);
 			action_counter = 0;
 
 			/* The agent is in a new state, do learning and action selection */
@@ -248,6 +249,9 @@ public class QLearningController extends Controller {
 							+ df.format(vy.getValue()) + " P_STATE: "
 							+ previous_state + " P_ACTION: " + previous_action
 							+ " P_REWARD: " + df.format(previous_reward)
+							+ " P_REWARD_ANGLE: " + df.format(50*StateAndReward.getRewardAngle(previous_angle, previous_vx, previous_vy))
+							+ " P_REWARD_XXXXX: " + df.format(8*StateAndReward.getRewardVx(previous_angle, previous_vx, previous_vy))
+							+ " P_REWARD_YYYYY: " + df.format(5*StateAndReward.getRewardVy(previous_angle, previous_vx, previous_vy))
 							+ " P_QVAL: "
 							+ df.format(Qtable.get(prev_stateaction))
 							+ " Tested: " + Ntable.get(prev_stateaction)
