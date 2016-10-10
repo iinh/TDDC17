@@ -1,97 +1,109 @@
 
-
-
 public class StateAndReward {
 
-	public final static int numberOfStates = 10; // Make sure this is odd, so (numberOfStates-1)/2 is an positive integer.
+	public final static int ANGLE_STATES = 11; // Make sure this is odd, so (numberOfStates-1)/2 is an positive integer.
+	public final static int VX_STATES = 3;
+	public final static int VY_STATES = 5;
+	
 	
 	
 	/* State discretization function for the angle controller */
 	public static String getStateAngle(double angle, double vx, double vy) {
 
-		String state = Integer.toString(discretize(angle, numberOfStates, (double)-Math.PI,
+		String state = Integer.toString(discretize(angle, ANGLE_STATES, (double)-Math.PI,
 		(double)Math.PI));
 		
 		return state;
 	}
 
-	/* State discretization function for the angle controller */
-	public static String getStateVx(double angle, double vx, double vy) {
-
-		String state = Integer.toString(discretize(vx, numberOfStates, -10, 10));
-		
-		return state;
-	}
-	
-	/* State discretization function for the angle controller */
-	public static String getStateVy(double angle, double vx, double vy) {
-
-		String state = Integer.toString(discretize(vy, numberOfStates/2, -5, 5));
-		
-		return state;
-	}
-
-
-	
 	/* Reward function for the angle controller */
 	public static double getRewardAngle(double angle, double vx, double vy) {
 
+		double reward = 0;
+		//double reward = 2*Math.PI - Math.abs(angle);	
 		
-		double reward = Math.pow(Math.PI,6) - Math.abs(Math.pow(angle,6));	
+		//String state = getStateAngle(angle, vx,vy);
+		//reward = (numberOfStates-1)/2 - Math.abs(Integer.parseInt(state)-(numberOfStates-1)/2);
 		
-		return reward;
+		int states_from_middle = Math.abs(getAngleState(angle) - ((ANGLE_STATES - 1) / 2));
+				
+		if(states_from_middle == 0){
+			reward = 55;
+		}
+		else if (states_from_middle == 1){
+			reward = 25;
+		}
+		else if(states_from_middle == 2){
+			reward = 12;
+		}
+		else{
+			reward = 1;
+		}
 		
-	}
-	
-	public static double getRewardVx(double angle, double vx, double vy){
-		double reward  = 0;
-		
-		reward = Math.pow(10,2)-Math.abs(Math.pow(vx,2));
 		
 		return reward;
 		
 	}
 
-	public static double getRewardVy(double angle, double vx, double vy){
-		double reward  = 0;
-		
-		reward = Math.pow(10,3)-Math.abs(Math.pow(vy,3));
-		
-		return reward;
-		
-	}	
-	
 	/* State discretization function for the full hover controller */
 	public static String getStateHover(double angle, double vx, double vy) {
 
-		/* TODO: IMPLEMENT THIS FUNCTION */
-		// -10 < vx < 10	
-		// ^vänster   ^höger
-		
-		// -4.5 < vy < 15.5
-		//  ^upp       ^ner
-		String angle_state = Integer.toString(discretize(angle, numberOfStates*4, (double)-Math.PI,
-				(double)Math.PI));
-		
-		String vx_state = Integer.toString(discretize(vx, numberOfStates, -10, 10));
-		
-		String vy_state = Integer.toString(discretize(vy, numberOfStates/2, -5, 16));
-		
-		
-		String state = angle_state + vx_state + vy_state;
+		String state = "Angle: "+getAngleState(angle)+"VX: "+getVxState(vx)+"Vy: "+getVyState(vy) ;
 		
 		return state;
 	}
 
 	/* Reward function for the full hover controller */
 	public static double getRewardHover(double angle, double vx, double vy) {
-
-		/* TODO: IMPLEMENT THIS FUNCTION */
 		
-		double reward = 0;
-		reward = 50*getRewardAngle(angle,vx,vy) + 5*getRewardVx(angle, vx, vy) + 3*getRewardVy(angle, vx, vy);
+		double reward = getRewardAngle(angle,vx,vy)+getVXReward(vx)+getVYReward(vy);
 
 		return reward;
+	}
+	
+	public static double getVXReward(double vx) {
+		double reward = 0;
+		int states_from_middle = Math.abs(getVxState(vx) -  ((VX_STATES - 1) / 2));
+		
+		if(states_from_middle == 0){
+			reward = 15;
+
+		}
+		else{
+			reward = 4;
+		}
+		
+		return reward;
+	}
+	
+	public static double getVYReward(double vy) {
+		double reward = 0;
+		int states_from_middle = Math.abs(getVyState(vy) -  ((VY_STATES - 1) / 2)); 
+		
+		if(states_from_middle == 0){
+			reward = 30;
+
+		}
+		else if (states_from_middle == 1){
+			reward = 8;
+		}
+		else{
+			reward = 1;
+		}
+		
+		return reward;
+	}
+	
+	public static int getAngleState(double angle) {
+		return discretize(angle, ANGLE_STATES, -2, 2);
+	}
+	
+	public static int getVxState(double vx) {
+		return discretize(vx, VX_STATES, -3, 3);
+	}
+	
+	public static int getVyState(double vy) {
+		return discretize(vy, VY_STATES, -5, 5);
 	}
 
 	// ///////////////////////////////////////////////////////////
